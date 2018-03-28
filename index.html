@@ -1,12 +1,145 @@
-<html>
-  <head>
-    <!-- <title>Halid Odat</title> -->
-  </head>
-  <body>
-    <h1>This is a test!!!</h1>
-    <h1 id="test"></h1>
-    <script>
-      document.getElementById("test").innerHTML = "Hello";
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ping Pong</title>
+</head>
+
+<body>
+    <canvas id="gc" width="800" height="600"></canvas>
+    <script type="text/javascript">
+    const PADDLE_WIDTH = 10;
+    const PADDLE_HEIGHT = 100;
+    const BALL_WIDTH = 10;
+    const WIN_SCORE = 2;
+    var won = false;
+    var c;
+    var cc;
+    var bx = 50;
+    var by = 50;
+    var vx = 10;
+    var vy = 4;
+    var p1y = 250;
+    var p2y = 250;
+    var p1s = 0;
+    var p2s = 0;
+
+    window.onload = function() {
+        c = document.getElementById('gc');
+        cc = c.getContext('2d');
+        document.addEventListener('mousedown', function(){
+        	if (won) {
+        		p1s = 0;
+        		p2s = 0;
+        		won = false;
+        	}
+        });
+        document.addEventListener('mousemove',
+            function(evt) {
+                var rect = c.getBoundingClientRect();
+                var root = document.documentElement;
+                var mouseX = evt.clientX - rect.left - root.scrollLeft;
+                var mouseY = evt.clientY - rect.top - root.scrollTop;
+                p1y = mouseY - (PADDLE_HEIGHT / 2);
+            });
+        const FPS = 30;
+        setInterval(function() {
+            movement();
+            update();
+        }, 1000 / FPS);
+    }
+
+    function drawNet() {
+    	for (var i = 0; i < c.height; i +=40) {
+    		rect(c.width/2-1,i,2, 20, 'white');
+    	}
+    }
+    function movement() {
+    	if(won) 
+    		return;
+        bx += vx;
+        by += vy;
+        AI();
+        if (bx > c.width - PADDLE_WIDTH - BALL_WIDTH) {
+            if (by > p2y && by < p2y + PADDLE_HEIGHT) {
+                vx = -vx;
+                var dx = by - (p2y + PADDLE_HEIGHT / 2);
+                vy = dx * 0.35;
+            } else {
+                p1s++;
+                bReset();
+                //console.log(p1s);
+            }
+        } else if (bx < PADDLE_WIDTH + BALL_WIDTH) {
+            if (by > p1y && by < p1y + PADDLE_HEIGHT) {
+                vx = -vx;
+                var dx = by - (p1y + PADDLE_HEIGHT / 2);
+                vy = dx * 0.35;
+            } else {
+                p2s++;
+                bReset();
+                //console.log(p2s);
+            }
+        }
+        if (by > c.height - BALL_WIDTH)
+            vy = -vy;
+        else if (by < BALL_WIDTH)
+            vy = -vy;
+    }
+
+    function update() {
+        rect(0, 0, c.width, c.height, "black");
+        cc.fillStyle = 'white';
+        cc.font = "14px bold Georgia";
+        if (won) {
+        	if (p1s >= WIN_SCORE) {
+        		cc.font = "20px bold";
+        		cc.fillText("Right player has won.", 300, 100);
+        	} else {
+        		cc.font = "20px bold";
+        		cc.fillText("Left player has won.", 300, 100);
+        	}
+        	cc.fillText("Click to continue.", 310, 500);
+        	return;
+        }
+        cc.fillText(p1s, 100, 100);
+        cc.fillText(p2s, c.width - 100, 100);
+        drawNet();
+        circle(bx, by, BALL_WIDTH, "white");
+        rect(0, p1y, PADDLE_WIDTH, PADDLE_HEIGHT, "white");
+        rect(c.width - PADDLE_WIDTH, p2y, PADDLE_WIDTH, PADDLE_HEIGHT, "white");
+    }
+
+    function AI() {
+        var amount = 4;
+        var pYC = p2y + (PADDLE_HEIGHT / 2);
+        if (pYC < by - 35)
+            p2y += amount;
+        else if (pYC > by + 35)
+            p2y -= amount;
+    }
+
+    function bReset() {
+        if (p1s >= WIN_SCORE || p2s >= WIN_SCORE)
+            won = true;
+        vx = -vx;
+        bx = c.width / 2;
+        by = c.height / 2;
+    }
+
+    function circle(centerX, centerY, radius, color) {
+        cc.fillStyle = color;
+        cc.beginPath();
+        cc.arc(centerX, centerY, radius, 0, Math.PI * 2, true);
+        cc.fill();
+    }
+
+    function rect(x, y, width, height, color) {
+        cc.fillStyle = color;
+        cc.fillRect(x, y, width, height);
+    }
     </script>
-  </body>
+</body>
+
 </html>
