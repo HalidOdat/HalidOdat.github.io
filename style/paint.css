@@ -1,0 +1,98 @@
+* {
+	box-sizing: border-box;
+	--moz-box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+
+	user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+}
+
+body{
+	margin: 0;
+}
+canvas {
+	display: block;
+}
+
+/* Set Button Style */
+.button {
+	/*background-color: #4CAF50;*/
+	background-color: #3ebcda;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+.button:hover {
+	background-color: red;
+}
+#clear-button:hover {
+	background-color: tomato;
+}
+#clear-button {
+	float: right;
+	display: inline-block;
+	margin-right: 3%;
+	margin-top: 15px;
+}
+#save-button:hover {
+	background-color: Turquoise;
+}
+#save-button {
+	float: right;
+	display: inline-block;
+	margin-right: 35px;
+	margin-top: 15px;
+	
+}
+#main-menu-text {
+	float left;
+	display: inline-block;
+}
+#radval {
+	font-weight: bold;
+}
+
+#footer-h {
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: green;
+}
+
+fieldset.color-display  {
+	border-radius: 2%;
+	border-style: dashed;
+	border-color: gray;
+}
+
+legend.color-display {
+	font-weight: bold;
+	font-style: italic;
+	display: block;
+    padding-left: 6px;
+    padding-right: 6px;
+    border: none;
+}
+
+fieldset.radius-display  {
+	border-radius: 2%;
+	border-style: dashed;
+	border-color: gray;
+	margin-bottom: 8px;
+}
+
+legend.radius-display {
+	font-weight: bold;
+	font-style: italic;
+	display: block;
+    padding-left: 6px;
+    padding-right: 6px;
+    border: none;
+}
