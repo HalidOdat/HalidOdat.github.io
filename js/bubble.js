@@ -3,46 +3,6 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 var c = canvas.getContext('2d');
 
-// c.fillStyle = "green";
-// c.fillRect(100,100,100,100);
-// c.fillRect(100,250,100,100);
-// c.fillRect(250,100,100,100);
-// c.fillRect(250,250,100,100);
-
-// // lines
-// c.beginPath();
-// c.moveTo(50,50);
-// c.lineTo(225, 50);
-// c.lineTo(225, 225);
-// c.lineTo(370,225);
-// c.strokeStyle = "rgba(255, 0, 0, 0.5)";
-// c.stroke();
-
-// // Arc / Circles
-// c.beginPath();
-// c.arc(450, 225, 30, 0, Math.PI*2,false);
-// c.strokeStyle = "cyan";
-// c.stroke();
-
-// function colorRandomizer(){
-// 	var r = Math.random() * 255;
-// 	var g = Math.random() * 255;
-// 	var b = Math.random() * 255;
-// }
-// for (var i = 0; i < 100; i++) {
-// 	var x = Math.random() * window.innerWidth;
-// 	var y = Math.random() * window.innerHeight;
-
-// 	var r = Math.round(Math.random() * 255);
-// 	var g = Math.round(Math.random() * 255);
-// 	var b = Math.round(Math.random() * 255);
-// 	console.log("rgb("+r+','+g+','+b+')');
-// 	c.beginPath();
-// 	c.arc(x, y, 30, 0, Math.PI*2,false);
-// 	c.strokeStyle = "rgb("+r+','+g+','+b+')';
-// 	c.stroke();	
-// }
-
 var mouse = {
 	x: undefined,
 	y: undefined
@@ -133,7 +93,6 @@ function init() {
 		circleArray.push(new Circle(x, y, vx, vy, radius));
 
 	}
-	//anime = setInterval(animate, 1000/30);
 }
 
 function animate() {
