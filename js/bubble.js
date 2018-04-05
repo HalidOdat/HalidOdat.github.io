@@ -8,7 +8,7 @@ var mouse = {
 	y: undefined
 }
 const MAX_RADIUS = 40;
-const INC_AMOUNT = 2;
+const INC_AMOUNT = 18;
 
 var circleArray = [];
 var colorArray = [
@@ -62,13 +62,12 @@ function Circle(x, y, vx, vy, radius) {
 		this.x+=this.vx;
 
 		// Mouse Position Interaction.
-		if (mouse.x - this.x < MAX_RADIUS && mouse.x - this.x > -MAX_RADIUS ) {
-			if(mouse.y - this.y < MAX_RADIUS && mouse.y - this.y > -MAX_RADIUS) {
+		if (mouse.x - this.x < MAX_RADIUS && mouse.x - this.x > -MAX_RADIUS && 
+			mouse.y - this.y < MAX_RADIUS && mouse.y - this.y > -MAX_RADIUS) {
 				if (this.radius < MAX_RADIUS) {
-					this.radius+=MAX_RADIUS;
+					this.radius+=INC_AMOUNT;
 
 				}
-			} 
 		} else if(this.radius > this.minRadius && this.radius != 0){
 			this.radius--;
 		}
