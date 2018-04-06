@@ -27,16 +27,32 @@ window.onload = function() {
     c.lineWidth = radius * 2;
     var putPoint = function(e) {
         if (dragging) {
-            c.lineTo(e.offsetX, e.offsetY);
+            var x = e.touches ? e.touches[0].clientX : e.clientX,
+                y = e.touches ? e.touches[0].clientY : e.clientY;
+
+            c.lineTo(x, y);
             c.stroke();
             c.beginPath();
-            c.arc(e.offsetX, e.offsetY, radius, Math.PI * 2, false);
+            c.arc(x, y, radius, Math.PI * 2, false);
             c.fill();
             c.beginPath();
-            c.moveTo(e.offsetX, e.offsetY);
+            c.moveTo(x, y);
         }
     }
+    
+    canvas.addEventListener('touchend', 
+        function() {
+            dragging = false;
+            c.beginPath();
+    });
 
+    canvas.addEventListener('touchstart', 
+        function(e) {
+            dragging = true;
+            putPoint(e);
+    });
+
+    canvas.addEventListener("touchmove", putPoint);
     canvas.addEventListener("mousemove", putPoint);
     canvas.addEventListener("mousedown",
         function(e) {
