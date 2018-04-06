@@ -1,6 +1,4 @@
 var canvas = document.querySelector('canvas');
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
 var c = canvas.getContext('2d');
 
 var mouse = {
@@ -8,7 +6,8 @@ var mouse = {
     y: undefined
 }
 const MAX_RADIUS = 40;
-const INC_AMOUNT = 18;
+const INC_AMOUNT = 25;
+const FPS = 35;
 
 var circleArray = [];
 var colorArray = [
@@ -24,6 +23,11 @@ var colorArray = [
     "#d56df2",
     "#4f86ff"
 ];
+
+window.onload = function() {
+    init();
+    setInterval(animate, 1000 / FPS);
+}
 
 canvas.addEventListener('mousemove',
     function(event) {
@@ -75,22 +79,18 @@ Circle.prototype.update = function() {
     this.draw();
 };
 
-window.onload = function() {
-    init();
-    setInterval(animate, 1000 / 36);
-}
-
 function init() {
     circleArray = [];
-    for (var i = 0; i < 1101; i++) {
-        var radius = Math.random() * 3 + 1;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    for (var i = 0; i < 1000; i++) {
+        var radius = Math.random() * 3 + 2;
         var x = Math.random() * (innerWidth - radius * 2) + radius;
         var y = Math.random() * (innerHeight - radius * 2) + radius;
         var vx = (Math.random() - 0.5); // * 16;
         var vy = (Math.random() - 0.5); // * 10;
 
         circleArray.push(new Circle(x, y, vx, vy, radius));
-
     }
 }
 
