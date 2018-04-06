@@ -25,6 +25,8 @@ window.onload = function() {
     setColor();
 
     c.lineWidth = radius * 2;
+    c.lineCap="round";
+
     var putPoint = function(e) {
         if (dragging) {
             var x = e.touches ? e.touches[0].clientX : e.clientX,
@@ -144,6 +146,7 @@ window.onload = function() {
         c.fillStyle = backColor;
         c.fillRect(0, 0, canvas.width, canvas.height);
         c.lineWidth = radius * 2;
+        c.lineCap="round";
         setColor();
         modal.style.display = 'none';
     }
