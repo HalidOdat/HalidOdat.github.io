@@ -25,11 +25,17 @@ var colorArray = [
 	"#4f86ff"
 ];
 
-window.addEventListener('mousemove', 
+canvas.addEventListener('mousemove', 
 	function(event){
-	mouse.x = event.x;
-	mouse.y = event.y;
+		mouse.x = event.x;
+		mouse.y = event.y;
 	//console.log(mouse);
+});
+canvas.addEventListener('touchmove', 
+	function(event) {
+		mouse.x = event.x;
+		mouse.y = event.y;
+		//console.log(mouse);
 });
 
 function Circle(x, y, vx, vy, radius) {
@@ -82,7 +88,7 @@ window.onload = function() {
 }
 function init() {
 	circleArray = [];
-	for (var i = 0; i < 2000; i++) {
+	for (var i = 0; i < 1000; i++) {
 		var radius = Math.random() * 3 + 1;
 		var x = Math.random() * (innerWidth - radius*2) + radius;
 		var y = Math.random() * (innerHeight - radius*2) + radius;
