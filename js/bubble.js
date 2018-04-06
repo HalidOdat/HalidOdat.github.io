@@ -33,9 +33,9 @@ canvas.addEventListener('mousemove',
 });
 canvas.addEventListener('touchmove', 
 	function(event) {
-		mouse.x = event.x;
-		mouse.y = event.y;
-		//console.log(mouse);
+		mouse.x = event.touches[0].clientX;
+		mouse.y = event.touches[0].clientY
+		//console.log(event.touches);
 });
 
 function Circle(x, y, vx, vy, radius) {
@@ -72,7 +72,6 @@ function Circle(x, y, vx, vy, radius) {
 			mouse.y - this.y < MAX_RADIUS && mouse.y - this.y > -MAX_RADIUS) {
 				if (this.radius < MAX_RADIUS) {
 					this.radius+=INC_AMOUNT;
-
 				}
 		} else if(this.radius > this.minRadius && this.radius != 0){
 			this.radius--;
@@ -84,11 +83,11 @@ function Circle(x, y, vx, vy, radius) {
 
 window.onload = function() {
 	init();
-	setInterval(animate, 1000/60);
+	setInterval(animate, 1000/35);
 }
 function init() {
 	circleArray = [];
-	for (var i = 0; i < 1500; i++) {
+	for (var i = 0; i < 700; i++) {
 		var radius = Math.random() * 3 + 1;
 		var x = Math.random() * (innerWidth - radius*2) + radius;
 		var y = Math.random() * (innerHeight - radius*2) + radius;
