@@ -26,7 +26,8 @@ var colorArray = [
 
 window.onload = function() {
     init();
-    setInterval(animate, 1000 / FPS);
+    //setInterval(animate, 1000 / FPS);
+    animate();
 }
 
 canvas.addEventListener('mousemove',
@@ -99,6 +100,7 @@ function animate() {
     for (var i = 0; i < circleArray.length; i++) {
         circleArray[i].update();
     }
+    requestAnimationFrame(animate);
 }
 
 // Resize funcion
