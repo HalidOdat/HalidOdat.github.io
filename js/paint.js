@@ -194,6 +194,7 @@ window.onload = function() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         c.putImageData(data, 0, 0);
+        setColor();
         c.lineWidth = radius*2;
     });
 }
