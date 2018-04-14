@@ -29,7 +29,7 @@ window.onload = function() {
 
     var putPoint = function(e) {
         if (dragging) {
-            var x = e.touches ? e.touches[0].clientX : e.clientX,
+            let x = e.touches ? e.touches[0].clientX : e.clientX,
                 y = e.touches ? e.touches[0].clientY : e.clientY;
 
             c.lineTo(x, y);
@@ -179,9 +179,21 @@ window.onload = function() {
     let imgDownload = document.getElementById('img-download');
     saveButton.onclick = function() {
         let date = new Date().toISOString().slice(0, 10);
-        console.log(date);
+        //console.log(date);
         imgDownload.href = canvas.toDataURL();
         imgDownload.download = "canvas-img-" + date + ".png"
         imgDownload.click();
     }
+    let menuButton = document.getElementById('menu-button');
+    menuButton.onclick = function() {
+        modal.style.display = 'block';
+    }
+    window.addEventListener('resize', function() {
+        console.log('gg');
+        let data = c.getImageData(0,0,canvas.width, canvas.height);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        c.putImageData(data, 0, 0);
+        c.lineWidth = radius*2;
+    });
 }

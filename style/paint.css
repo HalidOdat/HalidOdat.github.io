@@ -96,3 +96,17 @@ legend.radius-display {
     padding-right: 6px;
     border: none;
 }
+#menu-button {
+	margin-top: 15px;
+	margin-right: 15px;
+  	right: 0;
+  	position: absolute;
+}
+#menu-button:hover {
+	background-color: aqua;
+}
+#canvas-container {
+	height: 100%;
+  	width: 100%;
+  	position: relative;
+}
