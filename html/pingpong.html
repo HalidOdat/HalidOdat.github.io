@@ -3,7 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Halids Ping Pong</title>
+    <title>Halid`s Ping Pong</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+		}
+		canvas {
+			display: block;
+
+			user-select: none;
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+	</style>
 </head>
 
 <body>
@@ -14,21 +27,18 @@
     const BALL_WIDTH = 10;
     const WIN_SCORE = 10;
     var won = false;
-    var c;
-    var cc;
-    var bx = 50;
-    var by = 50;
+    var c,cc,p1y,p2y,bx,by;
+    var p1s=p2s=0;
     var vx = 10;
     var vy = 4;
-    var p1y = 250;
-    var p2y = 250;
-    var p1s = 0;
-    var p2s = 0;
 
     window.onload = function() {
         c = document.getElementById('gc');
         cc = c.getContext('2d');
-        document.addEventListener('mousedown', function(){
+        window.addEventListener('resize', resize);
+        resize();
+        p1y=p2y=c.height/2 - PADDLE_HEIGHT/2;
+        c.addEventListener('mousedown', function(){
         	if (won) {
         		p1s = 0;
         		p2s = 0;
@@ -39,17 +49,25 @@
             function(evt) {
                 var rect = c.getBoundingClientRect();
                 var root = document.documentElement;
-                var mouseX = evt.clientX - rect.left - root.scrollLeft;
+                //var mouseX = evt.clientX - rect.left - root.scrollLeft;
                 var mouseY = evt.clientY - rect.top - root.scrollTop;
                 p1y = mouseY - (PADDLE_HEIGHT / 2);
             });
-        const FPS = 30;
+        c.addEventListener('touchmove',
+            function(evt) {
+                p1y = evt.touches[0].clientY - (PADDLE_HEIGHT / 2);
+        });
+
         setInterval(function() {
             movement();
             update();
-        }, 1000 / FPS);
+        }, 1000/30);
     }
-
+    function resize() {
+        ballReset();
+    	c.width = window.innerWidth;
+        c.height = window.innerHeight;
+    }
     function drawNet() {
     	for (var i = 0; i < c.height; i +=40) {
     		rect(c.width/2-1,i,2, 20, 'white');
@@ -62,24 +80,22 @@
         by += vy;
         AI();
         if (bx > c.width - PADDLE_WIDTH - BALL_WIDTH) {
-            if (by > p2y && by < p2y + PADDLE_HEIGHT) {
+            if (by > p2y - 5 && by < p2y + PADDLE_HEIGHT + 5) {
                 vx = -vx;
                 var dx = by - (p2y + PADDLE_HEIGHT / 2);
                 vy = dx * 0.35;
             } else {
                 p1s++;
-                bReset();
-                //console.log(p1s);
+                resize();
             }
         } else if (bx < PADDLE_WIDTH + BALL_WIDTH) {
-            if (by > p1y && by < p1y + PADDLE_HEIGHT) {
+            if (by > p1y-5 && by < p1y + PADDLE_HEIGHT+5) {
                 vx = -vx;
                 var dx = by - (p1y + PADDLE_HEIGHT / 2);
                 vy = dx * 0.35;
             } else {
                 p2s++;
-                bReset();
-                //console.log(p2s);
+                resize();
             }
         }
         if (by > c.height - BALL_WIDTH)
@@ -91,18 +107,17 @@
     function update() {
         rect(0, 0, c.width, c.height, "black");
         cc.fillStyle = 'white';
-        cc.font = "14px bold Georgia";
         if (won) {
+        	cc.font = "bold 20px Comic Sans MS";
         	if (p1s >= WIN_SCORE) {
-        		cc.font = "20px bold";
-        		cc.fillText("Right player has won.", 300, 100);
+        		cc.fillText("Right player has won.", c.width/2-115, c.height/2-150);
         	} else {
-        		cc.font = "20px bold";
-        		cc.fillText("Left player has won.", 300, 100);
+        		cc.fillText("Left player has won.", c.width/2-115, c.height/2-150);
         	}
-        	cc.fillText("Click to continue.", 310, 500);
+        	cc.fillText("Click to continue.", c.width/2-100, c.height-150);
         	return;
         }
+        cc.font = "bold 18px Comic Sans MS";
         cc.fillText(p1s, 100, 100);
         cc.fillText(p2s, c.width - 100, 100);
         drawNet();
@@ -112,7 +127,7 @@
     }
 
     function AI() {
-        var amount = 4;
+        var amount = 6;
         var pYC = p2y + (PADDLE_HEIGHT / 2);
         if (pYC < by - 35)
             p2y += amount;
@@ -120,7 +135,7 @@
             p2y -= amount;
     }
 
-    function bReset() {
+    function ballReset() {
         if (p1s >= WIN_SCORE || p2s >= WIN_SCORE)
             won = true;
         vx = -vx;

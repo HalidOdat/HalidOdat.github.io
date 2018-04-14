@@ -90,7 +90,7 @@ function init() {
         var y = Math.random() * (innerHeight - radius * 2) + radius;
         var vx = (Math.random() - 0.5); // * 16;
         var vy = (Math.random() - 0.5); // * 10;
-
+        
         circleArray.push(new Circle(x, y, vx, vy, radius));
     }
 }
