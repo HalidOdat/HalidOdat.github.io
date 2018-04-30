@@ -105,7 +105,7 @@ function animate() {
 
 // Resize funcion
 function resize() {
-    // resizing the canvas.
+    // resizing the canvas, width and height.
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     init();
