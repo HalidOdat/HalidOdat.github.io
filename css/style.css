@@ -1,0 +1,281 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+
+    font-family: monospace;
+
+    /* Hide scroll sidebar, so it looks clean :) */
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+
+/* ------------- Background ------------ */
+
+#background {
+    /* Should be behind all other nodes */
+    z-index: -1000;
+    position: fixed;
+    top: 0;
+    margin: 0;
+}
+
+/* --------------- Menu --------------- */
+
+#menu {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-left: 4%;
+    padding-right: 4%;
+
+    background-color: #141414;
+
+    border-bottom: 5px dashed hsla(38, 100%, 50%, 0.639);
+}
+
+#logo {
+    width: 8%;
+    height: 8%;
+}
+
+#menu-list {
+    display: flex;
+    align-items: center;
+
+    margin: 0;
+
+    list-style: none;
+}
+
+#menu-list li {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: none;
+    margin-bottom: none;
+
+    padding: 8px;
+
+    color: hsl(300, 100%, 50%);
+
+    border: 2px solid transparent;
+}
+
+#menu-list li:hover {
+    color: darkgray;
+}
+
+#menu-list li.active {
+    border: 2px solid hsl(275, 100%, 50%);
+    border-radius: 10%;
+    color: darkgray;
+}
+
+#menu-list li a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+/* ------ Snap scrolling stuff -------- */
+
+#container {
+    width: 100%;
+    height: 100%;
+
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+.section {
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+}
+
+/* -------------- Home --------------- */
+
+#home-section {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+#greetings {
+    text-align: center;
+    color: white;
+    font-size: 80px;
+
+    margin-top: 25%;
+}
+
+#scroll-down-arrow-container {
+    display: none;
+    animation: fadein 3.5s;
+
+    margin-top: 15%;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+#scroll-down-arrow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#scroll-down-arrow img {
+    width: 70px;
+    height: 70px;
+}
+
+#scroll-down-arrow > span {
+    color: white;
+    font-size: 20px;
+
+    margin-bottom: 10px;
+}
+
+/* ----------------- About ---------------- */
+
+#about-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#about-section h1 {
+    color: white;
+    font-size:  80px;
+}
+
+#about-section > div {
+    color: white;
+    font-size: 20px;
+
+    width: 70%;
+    height: 50%;
+    background-color: hsla(0, 0%, 7%, 0.954);
+
+    border-radius: 25px;
+    padding: 10px
+}
+
+/* ----------------- Contact --------------- */
+
+#contact-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#contact-section h1 {
+    color: white;
+    font-size:  80px;
+}
+
+#contact-section > form {
+    color: white;
+    font-size: 20px;
+
+    width: 40%;
+    height: 60%;
+    background-color: hsla(0, 0%, 7%, 0.954);
+
+    border-radius: 25px;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#contact-section > form > label {
+    align-self: flex-start;
+    margin-left: 10%;
+
+    color: hsla(38, 100%, 50%, 0.639);
+}
+
+#contact-section > form > input[type="text"] {
+    align-self: center;
+
+    width: 80%;
+    height: 10%;
+
+    background-color: hsla(0, 0%, 5.5%, 0.988);
+
+    border: none;
+    border-bottom: 3px hsl(275, 100%, 50%) solid;
+    border-radius: 5px;
+
+    color: lightgray;
+
+    margin: 2%;
+}
+
+#contact-section > form > textarea {
+    align-self: center;
+
+    width: 80%;
+    height: 35%;
+
+    background-color: hsla(0, 0%, 5.5%, 0.988);
+
+    /* border: 1px black solid; */
+    border: none;
+    border-bottom: 3px hsl(275, 100%, 50%) solid;
+    border-radius: 5px;
+
+    color: lightgray;
+
+    margin: 2%;
+    padding: 1.5%;
+}
+
+#contact-section > form > input[type="submit"] {
+    align-self: center;
+
+    width: 80%;
+    height: 8%;
+
+    background-color: hsla(0, 0%, 5.5%, 0.988);
+
+    /* border: none; */
+    border: 2px hsl(275, 100%, 50%) solid;
+    color: hsla(38, 100%, 50%, 0.639);
+
+    margin: 4%;
+}
+
+#contact-section > form > input[type="submit"]:hover {
+    align-self: center;
+
+    width: 80%;
+    height: 8%;
+
+    background-color: hsla(0, 0%, 5.5%, 0.988);
+
+    /* border: none; */
+    border: 2px hsla(38, 100%, 50%, 0.639) solid;
+    color: hsl(275, 100%, 50%);
+
+    margin: 4%;
+}

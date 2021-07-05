@@ -1,88 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Halid Odat's Wedsite</title>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haled's webstite</title>
 
-	<link rel="stylesheet" type="text/css" href="style/index.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <link rel="stylesheet" href="./css/vendor/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
-<body class="body">
-	<header class="mainHeader">
-		<img src="img/bp.png">
-		<nav>
-			<ul>
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="html/paint.html">Draw</a></li>
-				<li><a href="html/bubble.html">Bubble</a></li>
-				<li><a href="html/pingpong.html">Ping Pong</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Porfolio</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</nav>
-	</header>	
+<body>
+    <canvas id="background"></canvas>
+    <div id="menu">
+        <img id="logo" src="./img/logo.jpg" alt="logo">
+        <ul id="menu-list">
+            <li id="menu-list-item-home"><a href="#home-section">.home()</a></li>
+            <li id="menu-list-item-about"><a href="#about-section">.about()</a></li>
+            <li id="menu-list-item-contact"><a href="#contact-section">.contact()</a></li>
+        </ul>
+    </div>
+    <div id="container">
+        <div id="home-section" class="section">
+            <h1 id="greetings"></h1>
+            <div id="scroll-down-arrow-container">
+                <div id="scroll-down-arrow">
+                    <span><b>Scroll down</b></span>
+                    <img src="./img/scroll-down-arrow.svg" alt="scroll-down">
+                </div>
+            </div>
+        </div>
+        <div id="about-section" class="section">
+            <h1>About</h1>
+            <div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur accusamus praesentium numquam odit. Molestias, doloremque aperiam alias reiciendis cumque tenetur dolor! Veritatis consequuntur deleniti dolorem, aperiam ea optio ipsam quam.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam quisquam recusandae porro dolor, laudantium explicabo? Dolorem delectus eveniet voluptatem optio minus voluptatibus quas libero recusandae temporibus? Vel dignissimos fugiat eveniet! Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam quisquam recusandae porro dolor, laudantium explicabo? Dolorem delectus eveniet voluptatem optio minus voluptatibus quas libero recusandae temporibus? Vel dignissimos fugiat eveniet!</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni minima quam molestiae eaque iure, optio velit blanditiis quibusdam? Culpa et officiis nesciunt, autem iure ut temporibus consequuntur praesentium adipisci tenetur.</p>
+            </div>
+        </div>
+        <div id="contact-section" class="section">
+            <h1>Contact</h1>
+            <form action="" method="post">
+                <label for="name"><i>Name:</i></label>
+                <input type="text" id="name" name="name" placeholder="John">
+                <label for="email"><i>Email:</i></label>
+                <input type="text" id="email" name="email" placeholder="something@gmail.com">
+                <label for="email"><i>Message:</i></label>
+                <textarea name="message" placeholder="message goes here..."></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
 
-	<div class="mainContent">
-		<div class="content">
-			<article class="topContent">
-				<header>
-					<h2><a href="#" title="First Post">First Post</a></h2>
-				</header>
-
-				<footer>
-					<p class="post-info">This post was writen by Halid</p>
-				</footer>
-
-				<content>
-					<p>Some text Here!!!</p>
-					<p>Some text Here!!!</p>
-				</content>
-			</article>
-
-			<article class="bottomContent">
-				<header>
-					<h2><a href="#" title="Second Post">First Post</a></h2>
-				</header>
-
-				<footer>
-					<p class="post-info">This post was writen by Halid</p>
-				</footer>
-
-				<content>
-					<p>Some text Here!!!</p>
-					<p>Some text Here!!!</p>
-				</content>
-			</article>
-		</div>
-	</div>
-
-	<aside class="top-sidebar">
-		<article>
-			<h2>Top Sidebar</h2>
-			<p>Some text Here!!!</p>
-			<p>Some text Here!!!</p>
-		</article>
-	</aside>
-
-	<aside class="middle-sidebar">
-		<article>
-			<h2>Middle Sidebar</h2>
-			<p>Some text Here!!!</p>
-			<p>Some text Here!!!</p>
-		</article>
-	</aside>
-
-	<aside class="bottom-sidebar">
-		<article>
-			<h2>Bottom Sidebar</h2>
-			<p>Some text Here!!!</p>
-			<p>Some text Here!!!</p>
-		</article>
-	</aside>
-
-	<footer class="mainFooter">
-		<p>Copyright &copy; 2018 <a href="#" title="#">HalidOdat.github.io</a> by <a href="mailto:halidodat@gmail.com">Halid Odat</a></p>
-	</footer>
+    <script src="./js/vendor/jquery.js"></script>
+    <script src="./js/vendor/typed.js"></script>
+    <script src="./js/particle.js"></script>
+    <script src="./js/menu.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
